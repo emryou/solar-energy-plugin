@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Solar Energy Designer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <h1>Solar Designer</h1>
+        <p class="subtitle">PVsyst/PVcase benzeri başlangıç arayüzü</p>
+        <nav>
+          <button class="tab-btn active" data-tab="dashboard">Dashboard</button>
+          <button class="tab-btn" data-tab="layout">Saha Yerleşimi</button>
+          <button class="tab-btn" data-tab="simulation">Simülasyon</button>
+          <button class="tab-btn" data-tab="reports">Raporlar</button>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <section class="tab active" id="dashboard">
+          <h2>Proje Özeti</h2>
+          <div class="cards">
+            <article class="card">
+              <h3>Kurulu Güç</h3>
+              <p><span id="installedPower">0</span> kWp</p>
+            </article>
+            <article class="card">
+              <h3>Yıllık Üretim (Tahmini)</h3>
+              <p><span id="annualEnergy">0</span> MWh</p>
+            </article>
+            <article class="card">
+              <h3>Performans Oranı</h3>
+              <p><span id="prValue">0</span> %</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="tab" id="layout">
+          <h2>Saha Yerleşimi</h2>
+          <form id="layoutForm" class="panel">
+            <label>
+              Saha Alanı (m²)
+              <input type="number" id="siteArea" min="1" value="10000" required />
+            </label>
+            <label>
+              Modül Gücü (W)
+              <input type="number" id="modulePower" min="1" value="620" required />
+            </label>
+            <label>
+              Modül Sayısı
+              <input type="number" id="moduleCount" min="1" value="3000" required />
+            </label>
+            <label>
+              İnverter Verimi (%)
+              <input type="number" id="inverterEfficiency" min="1" max="100" value="98" required />
+            </label>
+            <button type="submit">Yerleşimi Hesapla</button>
+          </form>
+          <div class="panel">
+            <h3>Yerleşim Sonucu</h3>
+            <p id="layoutResult">Henüz hesaplama yapılmadı.</p>
+          </div>
+        </section>
+
+        <section class="tab" id="simulation">
+          <h2>Enerji Simülasyonu</h2>
+          <form id="simulationForm" class="panel">
+            <label>
+              Yıllık Global Işınım (kWh/m²)
+              <input type="number" id="irradiation" min="1" value="1700" required />
+            </label>
+            <label>
+              Sistem Kayıpları (%)
+              <input type="number" id="losses" min="0" max="100" value="14" required />
+            </label>
+            <label>
+              Gölgeleme Kaybı (%)
+              <input type="number" id="shading" min="0" max="100" value="4" required />
+            </label>
+            <button type="submit">Simülasyonu Çalıştır</button>
+          </form>
+          <div class="panel">
+            <h3>Simülasyon Çıktısı</h3>
+            <p id="simulationResult">Henüz simülasyon çalıştırılmadı.</p>
+          </div>
+        </section>
+
+        <section class="tab" id="reports">
+          <h2>Raporlar</h2>
+          <div class="panel">
+            <p>Bu bölümde ilerleyen adımda PDF/Excel rapor export eklenecek.</p>
+            <button id="exportButton" type="button">Önizleme Raporu Oluştur</button>
+            <pre id="reportPreview">Rapor henüz oluşturulmadı.</pre>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
